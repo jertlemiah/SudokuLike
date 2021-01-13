@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
 
-public class ButtonController_GridNumber : ButtonController
+public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
 {
     [SerializeField]
     public bool turnOutlineLeftOn, turnOutlineRightOn, turnOutlineTopOn, turnOutlineBottomOn;
@@ -22,7 +23,27 @@ public class ButtonController_GridNumber : ButtonController
     public TMP_Text mainText;
 
     [SerializeField]
-    public bool givenDigit = false;
+    public bool isGiven = false;
+
+    [SerializeField]
+    public GameObject UiSelector, UiSelected, UiPressed;
+
+    public void LoadButtonData(ButtonData buttonData)
+    {
+        correctValue = buttonData.correctValue;
+        if (buttonData.isGiven)
+        {
+            currentValue = buttonData.correctValue;
+            isGiven = true;
+        }
+        else
+        {
+            currentValue = 0;
+            isGiven = true;
+        }
+        regionNum = buttonData.regionNum;
+        UpdateMainText(currentValue);
+    }
 
     public void OnClick()
     {
@@ -31,9 +52,44 @@ public class ButtonController_GridNumber : ButtonController
             GameGridController.Instance.AddSelectedCells(this);
     }
 
-    public void UpdateMainText(int newValue)
+    public void OnSelect(BaseEventData eventData)
     {
-        if (!givenDigit)
+        GameGridController.Instance.AddSelectedCells(this);
+        if (UiSelected != null)
+            UiSelected.SetActive(true);
+    }
+
+    public void Deselect()
+    {
+        if (UiSelected != null)
+            UiSelected.SetActive(false);
+    }
+
+    public void EraseCell()
+    {
+        if (!isGiven)
+        {
+            mainText.text = "";
+        }
+        else
+        {
+            Debug.Log("Cannot erase a given digit");
+        }
+    }
+    /* need to fix this so that I can internally update the cell and externally update it
+     * 
+     * 
+     */
+
+    public void UpdateValue(int newValue)
+    {
+        currentValue = newValue;
+        UpdateMainText()
+    }
+
+    private void UpdateMainText(bool )
+    {
+        if (!isGiven)
         {
             if (newValue == 0)
                 mainText.text = "";

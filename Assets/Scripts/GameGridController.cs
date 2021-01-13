@@ -41,6 +41,31 @@ public class GameGridController : Singleton<GameGridController>
         UpdateCellWalls();
     }
 
+    public void LoadLevelData(LevelData levelData)
+    {
+        if(levelData.size > 9)
+        {
+            Debug.LogError("levelData size cannot be larger than 9");
+        }
+        else if (levelData.size < 2)
+        {
+            Debug.LogError("levelData size cannot be smaller than 2");
+        }
+
+        PopulateAllButtonsList();
+        int i = 0;
+        foreach(ButtonData buttonData in levelData.buttonDataList)
+        {
+            allButtons[i]
+                i++;
+        }
+    }
+
+    public void GenerateLevelData()
+    {
+
+    }
+
     public void ClearBoard()
     {
         Debug.Log("ClearBoard called");
@@ -64,12 +89,22 @@ public class GameGridController : Singleton<GameGridController>
     {
         if (toolState != "MultiSelect")
             ClearSelectedCells();
+        //newCell.OnSelect();
         selectedCells.Add(newCell);
     }
 
     public void ClearSelectedCells()
     {
+        foreach(ButtonController_GridNumber cell in selectedCells)
+        {
+            cell.Deselect();
+        }
         selectedCells.Clear();
+    }
+
+    public void PopulateAllButtonsList()
+    {
+        allButtons = gridLayoutGroup.GetComponentsInChildren<ButtonController_GridNumber>();
     }
 
     public void GetRegions()
@@ -78,7 +113,7 @@ public class GameGridController : Singleton<GameGridController>
         //knownRegionNums.Clear();
         allRegions.Clear();
         int i = 0;
-        allButtons = gridLayoutGroup.GetComponentsInChildren<ButtonController_GridNumber>();
+        PopulateAllButtonsList();
         //Debug.Log("Size of allButtons " + allButtons.Length);
         foreach (ButtonController_GridNumber button in allButtons)
         {

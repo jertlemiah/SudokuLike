@@ -53,13 +53,13 @@ public class ButtonController : MonoBehaviour,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (UiSelected != null && disableVisuals == false)
+        if (UiSelector != null && disableVisuals == false)
             UiSelector.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (UiSelected != null && disableVisuals == false)
+        if (UiSelector != null && disableVisuals == false)
             UiSelector.SetActive(false);
     }
 
