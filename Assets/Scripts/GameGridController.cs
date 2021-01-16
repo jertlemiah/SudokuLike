@@ -1,9 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using System.Linq;
+using UnityEngine.UI;
+using System.IO;
 
 public class GameGridController : Singleton<GameGridController>
 {
+    
+    [SerializeField]
+    public string puzzleName = "puzzleName";
+    
     //[SerializeField]
     //private List<ButtonController_GridNumber> allButtons = new List<ButtonController_GridNumber>();
     private ButtonController_GridNumber[] allButtons;
@@ -20,7 +28,13 @@ public class GameGridController : Singleton<GameGridController>
     [SerializeField]
     public List<ButtonController_GridNumber> selectedCells = new List<ButtonController_GridNumber>();
     [SerializeField]
-    public string toolState = "";
+    public string toolState = "";   
+
+    [Header("Editor Buttons")]
+    [SerializeField]
+    private string levelDataDestinationFolder;
+    [SerializeField]
+    public LevelData levelToLoad;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +57,8 @@ public class GameGridController : Singleton<GameGridController>
 
     public void LoadLevelData(LevelData levelData)
     {
-        if(levelData.size > 9)
+        Debug.Log("LoadLevelData called, loading puzzle: " + levelData.puzzleName);
+        if (levelData.size > 9)
         {
             Debug.LogError("levelData size cannot be larger than 9");
         }
@@ -54,25 +69,87 @@ public class GameGridController : Singleton<GameGridController>
 
         PopulateAllButtonsList();
         int i = 0;
+        // for each buttonData, populate a button
         foreach(ButtonData buttonData in levelData.buttonDataList)
         {
-            allButtons[i]
-                i++;
+            //Debug.Log("Button number: " +i);
+            if (i > allButtons.Length - 1)
+            {
+                //break;
+            }
+            allButtons[i].LoadButtonData(buttonData);
+            i++;
         }
     }
 
     public void GenerateLevelData()
     {
+        Debug.Log("GenerateLevelData called");
+        LevelData newLevelData = ScriptableObject.CreateInstance<LevelData>();
+        newLevelData.size = size;
+        newLevelData.puzzleName = puzzleName;
+        newLevelData.buttonDataList = new List<ButtonData>();
+        ButtonData newButtonData;
+        foreach(ButtonController_GridNumber button in allButtons)
+        {
+            newButtonData = new ButtonData();
+            newButtonData.index = button.idSelf;
+            newButtonData.regionNum = button.regionNum;
+            newButtonData.isGiven = button.isGiven;
+            newButtonData.correctValue = button.correctValue;
+            newButtonData.currentValue = button.currentValue;
 
+            newLevelData.buttonDataList.Add(newButtonData);
+        }
+
+        Debug.Log("Creating LevelData asset '" + puzzleName + ".asset' in " + levelDataDestinationFolder);
+        if (File.Exists(levelDataDestinationFolder + "/" + puzzleName + ".asset") == true)
+        {
+            //File.Delete(fatesDestinationFolder + "/" + assetName);
+            Debug.Log("Skipping already existing LevelData '" + puzzleName + ".asset'");
+        }
+        else
+        {
+            AssetDatabase.CreateAsset(newLevelData, levelDataDestinationFolder + "/" + puzzleName + ".asset");
+        }
     }
 
+    public void UpdateAllButtonText()
+    {
+        PopulateAllButtonsList();
+        foreach (ButtonController_GridNumber button in allButtons)
+        {
+            button.UpdateMainText(true);
+        }
+    }
+    /*
+     * [SerializeField]
+    public int index, regionNum;
+    [SerializeField]
+    public bool isGiven = false;
+    [SerializeField]
+    public int correctValue = 1;
+     * */
+    /*Debug.Log("Creating FateReason asset '" + assetName + "' in " + fatesDestinationFolder);
+            if(File.Exists(fatesDestinationFolder + "/" + assetName) == true)
+            {
+                //File.Delete(fatesDestinationFolder + "/" + assetName);
+                Debug.Log("Skipping already existing FateReason '" + assetName + "'");
+            }
+            else
+            {
+                AssetDatabase.CreateAsset(reason, fatesDestinationFolder + "/" + assetName);
+            }
+     * 
+     */
     public void ClearBoard()
     {
         Debug.Log("ClearBoard called");
+        PopulateAllButtonsList();
         Debug.Log("allButtons.length: " + allButtons.Length);
         foreach (ButtonController_GridNumber button in allButtons)
         {
-            button.UpdateMainText(0);
+            button.EraseCell();
         }
     }
 
@@ -81,7 +158,7 @@ public class GameGridController : Singleton<GameGridController>
         Debug.Log("UpdateSelectedCells called with value "+newValue);
         foreach (ButtonController_GridNumber cell in selectedCells)
         {
-            cell.UpdateMainText(newValue);
+            cell.UpdateValue(newValue);
         }
     }
 
@@ -140,6 +217,7 @@ public class GameGridController : Singleton<GameGridController>
     public void UpdateDisjointSet()
     {
         Debug.Log("UpdateDisjointSet called");
+        PopulateAllButtonsList();
         // Create a disjoint set of width*height for all the cells
         disjointSet = new DisjSets(size * size);
         /*
@@ -171,6 +249,7 @@ public class GameGridController : Singleton<GameGridController>
     public void UpdateCellWalls()
     {
         Debug.Log("UpdateCellWalls called");
+        PopulateAllButtonsList();
         /*/
          * For each cell in a region
          *      if wall is adjacent to another cell in the region, turn that wall off

@@ -3,20 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using UnityEditor;
 
 public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
 {
+    //[Header("Cell Values")]
+    [SerializeField]
+    public int currentValue, correctValue, regionNum = 1;
+
+    //[Header("")]
+    //EditorStyles.foldout
+    //GUIStyle.foldout
+    //[Header("Visual Objects")]
     [SerializeField]
     public bool turnOutlineLeftOn, turnOutlineRightOn, turnOutlineTopOn, turnOutlineBottomOn;
 
     [SerializeField]
     public GameObject outlineLeftObj, outlineRightObj, outlineTopObj, outlineBottomObj;
 
-    [SerializeField]
-    public int currentValue = 0, correctValue = 1;
+    
 
     [SerializeField]
-    public int idSelf, regionNum = 1, rowNum = 1, colNum = 1,
+    public int idSelf, rowNum = 1, colNum = 1,
         idLeft, idRight, idTop, idBottom;
 
     [SerializeField]
@@ -31,18 +39,19 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
     public void LoadButtonData(ButtonData buttonData)
     {
         correctValue = buttonData.correctValue;
-        if (buttonData.isGiven)
-        {
-            currentValue = buttonData.correctValue;
-            isGiven = true;
-        }
+        currentValue = buttonData.currentValue;
+
+
+        isGiven = buttonData.isGiven;
+
+        if (isGiven)
+            currentValue = correctValue;
         else
-        {
-            currentValue = 0;
-            isGiven = true;
-        }
+            currentValue = buttonData.currentValue;
+
         regionNum = buttonData.regionNum;
-        UpdateMainText(currentValue);
+
+        UpdateMainText(true);
     }
 
     public void OnClick()
@@ -84,23 +93,22 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
     public void UpdateValue(int newValue)
     {
         currentValue = newValue;
-        UpdateMainText()
+        UpdateMainText(false);
     }
 
-    private void UpdateMainText(bool )
+    public void UpdateMainText(bool writeGiven)
     {
-        if (!isGiven)
+        if (!isGiven || writeGiven)
         {
-            if (newValue == 0)
+            if (currentValue == 0)
                 mainText.text = "";
             else
-                mainText.text = newValue.ToString();
+                mainText.text = currentValue.ToString();
         }
         else
         {
             Debug.Log("Cannot change the value of a given digit");
-        }
-            
+        }        
     }
 
     public void UpdateCellWalls()

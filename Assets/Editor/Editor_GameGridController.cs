@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEditor;
+//using co
 
 [CustomEditor(typeof(GameGridController))]
 [CanEditMultipleObjects]
@@ -11,6 +12,9 @@ public class Editor_GameGridController : Editor
 
         DrawDefaultInspector();
         //EditorGUILayout.LabelField("Repopulate Fate Reaons");
+        GUILayout.Label("Editor Buttons");
+        //GUIStyle.
+        //Editor.
         if (GUILayout.Button("Get Regions"))
         {
             myTarget.GetRegions();
@@ -27,6 +31,23 @@ public class Editor_GameGridController : Editor
         {
             myTarget.ClearBoard();
         }
-        
+
+        if (GUILayout.Button("GenerateLevelData()"))
+        {
+            myTarget.GenerateLevelData();
+        }
+        //Editor.
+        //GUIStyle.
+        if (GUILayout.Button("Load Level Data"))
+        {
+            myTarget.LoadLevelData(myTarget.levelToLoad);
+        }
+        //GUILayout.
+
+
+        if (GUILayout.Button("UpdateAllButtonText()"))
+        {
+            myTarget.UpdateAllButtonText();
+        }
     }
 }
