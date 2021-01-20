@@ -6920,6 +6920,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1502708847}
     m_Modifications:
+    - target: {fileID: 985944945202578790, guid: 12c26143c293cf44d86d3980102f8ce5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1711167947050835743, guid: 12c26143c293cf44d86d3980102f8ce5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7029,51 +7034,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Button_Number
-      objectReference: {fileID: 0}
-    - target: {fileID: 1796338103853281399, guid: 12c26143c293cf44d86d3980102f8ce5,
-        type: 3}
-      propertyPath: correctValue
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1796338103853281399, guid: 12c26143c293cf44d86d3980102f8ce5,
-        type: 3}
-      propertyPath: currentValue
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1796338103853281399, guid: 12c26143c293cf44d86d3980102f8ce5,
-        type: 3}
-      propertyPath: isGiven
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1796338103853281399, guid: 12c26143c293cf44d86d3980102f8ce5,
-        type: 3}
-      propertyPath: turnOutlineLeftOn
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1796338103853281399, guid: 12c26143c293cf44d86d3980102f8ce5,
-        type: 3}
-      propertyPath: turnOutlineTopOn
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1796338103853281399, guid: 12c26143c293cf44d86d3980102f8ce5,
-        type: 3}
-      propertyPath: idLeft
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1796338103853281399, guid: 12c26143c293cf44d86d3980102f8ce5,
-        type: 3}
-      propertyPath: idRight
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1796338103853281399, guid: 12c26143c293cf44d86d3980102f8ce5,
-        type: 3}
-      propertyPath: idTop
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1796338103853281399, guid: 12c26143c293cf44d86d3980102f8ce5,
-        type: 3}
-      propertyPath: idBottom
-      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8415212577085788337, guid: 12c26143c293cf44d86d3980102f8ce5,
         type: 3}
@@ -19631,6 +19591,11 @@ PrefabInstance:
         type: 3}
       propertyPath: correctValue
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615333872258372671, guid: 12c26143c293cf44d86d3980102f8ce5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5160799372416700207, guid: 12c26143c293cf44d86d3980102f8ce5,
         type: 3}

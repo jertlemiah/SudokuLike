@@ -11,6 +11,11 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
     [SerializeField]
     public int currentValue, correctValue, regionNum = 1;
 
+    [SerializeField]
+    public string currentState = "None";
+    [SerializeField]
+    public bool isCorrectValue = false, isHighlighted = false, isSelected = false;
+
     //[Header("")]
     //EditorStyles.foldout
     //GUIStyle.foldout
@@ -19,9 +24,7 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
     public bool turnOutlineLeftOn, turnOutlineRightOn, turnOutlineTopOn, turnOutlineBottomOn;
 
     [SerializeField]
-    public GameObject outlineLeftObj, outlineRightObj, outlineTopObj, outlineBottomObj;
-
-    
+    public GameObject outlineLeftObj, outlineRightObj, outlineTopObj, outlineBottomObj; 
 
     [SerializeField]
     public int idSelf, rowNum = 1, colNum = 1,
@@ -34,7 +37,7 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
     public bool isGiven = false;
 
     [SerializeField]
-    public GameObject UiSelector, UiSelected, UiPressed;
+    public GameObject UiSelector, UiSelected, UiPressed, UiHighlighted, UiIncorrect;
 
     public void LoadButtonData(ButtonData buttonData)
     {
@@ -52,6 +55,61 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
         regionNum = buttonData.regionNum;
 
         UpdateMainText(true);
+    }
+
+    public void SetState_Incorrect()
+    {
+        isCorrectValue = false;
+    }
+    public void SetState_Highlighted()
+    {
+        currentState = "Highlighted";
+    }
+    public void SetState_Selected()
+    {
+        currentState = "Selected";
+    }
+    public void SetState_None()
+    {
+        currentState = "None";
+    }
+
+    private void UpdateStateVisuals()
+    {
+        //isCorrectValue = false, isHighlighted = false, isSelected = false;
+        //_____Handle if digit is correct or not_____
+        if (!isCorrectValue)
+        {
+            // Turn the incorrect filter on
+            UiIncorrect.SetActive(true);
+            currentState = "Incorrect";
+        }
+        else
+        {
+            // Turn the incorrect filter off
+            UiIncorrect.SetActive(false);
+            if (mainText.text.Length > 0 && isCorrectValue)
+                currentState = "Correct";
+            else
+                currentState = "No Value";
+        }
+
+        UiHighlighted.SetActive(false);
+
+        currentState = currentState + " and ";
+        if (isHighlighted)
+        {
+            currentState = currentState + " Highlighted";
+        }
+        else if (isSelected)
+        {
+            currentState = currentState + " Selected";
+        }
+        else
+        {
+            currentState = currentState + " Not Selected or Highlighted";
+        }
+
     }
 
     public void OnClick()
