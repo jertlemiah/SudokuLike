@@ -81,33 +81,62 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
         if (!isCorrectValue)
         {
             // Turn the incorrect filter on
-            UiIncorrect.SetActive(true);
+            if (UiIncorrect != null)
+                UiIncorrect.SetActive(true);
+            else
+                Debug.Log("Button number " + idSelf + " does not have UiIncorrect setup correctly.");
+            // Update the state text
             currentState = "Incorrect";
         }
         else
         {
             // Turn the incorrect filter off
-            UiIncorrect.SetActive(false);
+            if (UiIncorrect != null)
+                UiIncorrect.SetActive(false);
+            else
+                Debug.Log("Button number " + idSelf + " does not have UiIncorrect setup correctly.");
+            // Update the state text
             if (mainText.text.Length > 0 && isCorrectValue)
                 currentState = "Correct";
             else
                 currentState = "No Value";
         }
 
-        UiHighlighted.SetActive(false);
-
         currentState = currentState + " and ";
+
+        //_____Turn off highighted and selected filters_____
+        if (UiHighlighted != null)
+            UiHighlighted.SetActive(false);
+        else
+            Debug.Log("Button number " + idSelf + " does not have UiHighlighted setup correctly.");
+        if (UiSelected != null)
+            UiSelected.SetActive(false);
+        else
+            Debug.Log("Button number " + idSelf + " does not have UiSelected setup correctly.");
+
+        // Turn on highlight filter
         if (isHighlighted)
         {
-            currentState = currentState + " Highlighted";
+            if (UiHighlighted != null)
+                UiHighlighted.SetActive(true);
+            else
+                Debug.Log("Button number " + idSelf + " does not have UiHighlighted setup correctly.");
+
+            currentState = currentState + "Highlighted";
         }
+        // Turn on selected filter
         else if (isSelected)
         {
-            currentState = currentState + " Selected";
+            if (UiSelected != null)
+                UiSelected.SetActive(false);
+            else
+                Debug.Log("Button number " + idSelf + " does not have UiSelected setup correctly.");
+            currentState = currentState + "Selected";
         }
         else
         {
-            currentState = currentState + " Not Selected or Highlighted";
+            // Both chould remain off
+            currentState = currentState + "Not Selected or Highlighted";
         }
 
     }
@@ -116,7 +145,7 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
     {
         Debug.Log("Button onClick called");
         
-            GameGridController.Instance.AddSelectedCells(this);
+        GameGridController.Instance.AddSelectedCells(this);
     }
 
     public void OnSelect(BaseEventData eventData)

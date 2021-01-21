@@ -20,6 +20,7 @@ public class Editor_ButtonController_GridNumber : Editor
         EditorGUILayout.IntField("Cell Index", myTarget.idSelf);
         EditorGUILayout.IntField("Column Number", myTarget.colNum);
         EditorGUILayout.IntField("Row Number", myTarget.rowNum);
+        EditorGUILayout.TextField("State:", myTarget.currentState);
         EditorGUI.EndDisabledGroup();
 
         GUILayout.Space(10f);
@@ -58,6 +59,12 @@ public class Editor_ButtonController_GridNumber : Editor
             //myTarget.mainText.text = EditorGUILayout.TextField("Cell Text", myTarget.mainText.text);
 
             //GUILayout.Space(5f);
+
+            myTarget.isCorrectValue = EditorGUILayout.Toggle("Is correct value?", myTarget.isCorrectValue);
+            myTarget.isHighlighted = EditorGUILayout.Toggle("Is highlighted?", myTarget.isHighlighted);
+            myTarget.isSelected = EditorGUILayout.Toggle("Is currently selected?", myTarget.isSelected);
+
+            GUILayout.Space(5f);
 
             myTarget.idLeft = EditorGUILayout.IntField("Index of Left cell", myTarget.idLeft);
             myTarget.idRight = EditorGUILayout.IntField("Index of Right cell", myTarget.idRight);
