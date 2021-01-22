@@ -171,17 +171,22 @@ public class GameGridController : Singleton<GameGridController>
         }
     }
 
-    public void AddSelectedCells(ButtonController_GridNumber newCell)
+    public void AddSelectedCells(ButtonController_GridNumber newCell, bool isMulti)
     {
-        if (toolState != "MultiSelect")
+        if (!isMulti || toolState != "MultiSelect")
+        {
+            
             ClearSelectedCells();
+        }
+            
         //newCell.OnSelect();
         selectedCells.Add(newCell);
     }
 
     public void ClearSelectedCells()
     {
-        foreach(ButtonController_GridNumber cell in selectedCells)
+        Debug.Log("Clearing selectedCellsList");
+        foreach (ButtonController_GridNumber cell in selectedCells)
         {
             cell.Deselect();
         }

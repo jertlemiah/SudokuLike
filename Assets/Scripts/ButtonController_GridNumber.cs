@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using UnityEditor;
 
-public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
+public class ButtonController_GridNumber : MonoBehaviour/*, ISelectHandler*/, IPointerEnterHandler
 {
     //[Header("Cell Values")]
     [SerializeField]
@@ -141,17 +141,31 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
 
     public void OnClick()
     {
-        Debug.Log("Button onClick called");
-        
-        GameGridController.Instance.AddSelectedCells(this);
-    }
+        Debug.Log("Button " + idSelf + " onClick called");
 
-    public void OnSelect(BaseEventData eventData)
-    {
-        GameGridController.Instance.AddSelectedCells(this);
-        isSelected = true;
+        GameGridController.Instance.AddSelectedCells(this, false);
+        //isSelected = true;
         ChangeStates(isCorrectValue, isHighlighted, true);
     }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        //Debug.Log("OnMouseEnter button" + idSelf);
+        if (Input.GetMouseButton(0))
+        {
+            GameGridController.Instance.AddSelectedCells(this, true);
+            //isSelected = true;
+            ChangeStates(isCorrectValue, isHighlighted, true);
+        }
+        
+    }
+
+    //public void OnSelect(BaseEventData eventData)
+    //{
+    //    GameGridController.Instance.AddSelectedCells(this, false);
+    //    //isSelected = true;
+    //    ChangeStates(isCorrectValue, isHighlighted, true);
+    //}
 
     public void Deselect()
     {
