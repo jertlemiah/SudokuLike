@@ -9,6 +9,414 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15c291983c958e948a61950f37ee7b42, type: 3}
+  m_Script: {fileID: 0}
   m_Name: Test 1
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  size: 9
+  puzzleName: Test 1
+  buttonDataList:
+  - isGiven: 0
+    index: 0
+    regionNum: 1
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 1
+    regionNum: 1
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 2
+    regionNum: 1
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 3
+    regionNum: 2
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 4
+    regionNum: 2
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 5
+    regionNum: 2
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 6
+    regionNum: 3
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 7
+    regionNum: 3
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 8
+    regionNum: 3
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 9
+    regionNum: 1
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 10
+    regionNum: 1
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 11
+    regionNum: 1
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 12
+    regionNum: 2
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 13
+    regionNum: 2
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 14
+    regionNum: 2
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 15
+    regionNum: 3
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 16
+    regionNum: 3
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 17
+    regionNum: 3
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 18
+    regionNum: 1
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 19
+    regionNum: 1
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 20
+    regionNum: 1
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 21
+    regionNum: 2
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 22
+    regionNum: 2
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 23
+    regionNum: 2
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 24
+    regionNum: 3
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 25
+    regionNum: 3
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 26
+    regionNum: 3
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 27
+    regionNum: 4
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 28
+    regionNum: 4
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 29
+    regionNum: 4
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 30
+    regionNum: 5
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 31
+    regionNum: 5
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 32
+    regionNum: 5
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 33
+    regionNum: 6
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 34
+    regionNum: 6
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 35
+    regionNum: 6
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 36
+    regionNum: 4
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 37
+    regionNum: 4
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 38
+    regionNum: 4
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 39
+    regionNum: 5
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 40
+    regionNum: 5
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 41
+    regionNum: 5
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 42
+    regionNum: 6
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 43
+    regionNum: 6
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 44
+    regionNum: 6
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 45
+    regionNum: 4
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 46
+    regionNum: 4
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 47
+    regionNum: 4
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 48
+    regionNum: 5
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 49
+    regionNum: 5
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 50
+    regionNum: 5
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 51
+    regionNum: 6
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 52
+    regionNum: 6
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 53
+    regionNum: 6
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 54
+    regionNum: 7
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 55
+    regionNum: 7
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 56
+    regionNum: 7
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 57
+    regionNum: 8
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 58
+    regionNum: 8
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 59
+    regionNum: 8
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 60
+    regionNum: 9
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 61
+    regionNum: 9
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 62
+    regionNum: 9
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 63
+    regionNum: 7
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 64
+    regionNum: 7
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 65
+    regionNum: 7
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 66
+    regionNum: 8
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 67
+    regionNum: 8
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 68
+    regionNum: 8
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 69
+    regionNum: 9
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 70
+    regionNum: 9
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 71
+    regionNum: 9
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 72
+    regionNum: 7
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 73
+    regionNum: 7
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 74
+    regionNum: 7
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 75
+    regionNum: 8
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 76
+    regionNum: 8
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 77
+    regionNum: 8
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 78
+    regionNum: 9
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 79
+    regionNum: 9
+    correctValue: 0
+    currentValue: 0
+  - isGiven: 0
+    index: 80
+    regionNum: 9
+    correctValue: 0
+    currentValue: 0

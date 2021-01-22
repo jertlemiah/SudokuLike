@@ -39,6 +39,11 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
     [SerializeField]
     public GameObject UiSelector, UiSelected, UiPressed, UiHighlighted, UiIncorrect;
 
+    private void Start()
+    {
+        UpdateStateVisuals();
+    }
+
     public void LoadButtonData(ButtonData buttonData)
     {
         correctValue = buttonData.correctValue;
@@ -57,28 +62,11 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
         UpdateMainText(true);
     }
 
-    public void SetState_Incorrect()
-    {
-        isCorrectValue = false;
-    }
-    public void SetState_Highlighted()
-    {
-        currentState = "Highlighted";
-    }
-    public void SetState_Selected()
-    {
-        currentState = "Selected";
-    }
-    public void SetState_None()
-    {
-        currentState = "None";
-    }
-
     private void UpdateStateVisuals()
     {
         //isCorrectValue = false, isHighlighted = false, isSelected = false;
         //_____Handle if digit is correct or not_____
-        if (!isCorrectValue)
+        if (mainText.text.Length > 0 && !isCorrectValue)
         {
             // Turn the incorrect filter on
             if (UiIncorrect != null)
@@ -104,7 +92,7 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
 
         currentState = currentState + " and ";
 
-        //_____Turn off highighted and selected filters_____
+        //_____Turn OFF highighted and selected filters_____
         if (UiHighlighted != null)
             UiHighlighted.SetActive(false);
         else
@@ -117,6 +105,7 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
         // Turn on highlight filter
         if (isHighlighted)
         {
+            Debug.Log("Turned highlighted filter on");
             if (UiHighlighted != null)
                 UiHighlighted.SetActive(true);
             else
@@ -127,8 +116,9 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
         // Turn on selected filter
         else if (isSelected)
         {
+            Debug.Log("Turned selected filter on");
             if (UiSelected != null)
-                UiSelected.SetActive(false);
+                UiSelected.SetActive(true);
             else
                 Debug.Log("Button number " + idSelf + " does not have UiSelected setup correctly.");
             currentState = currentState + "Selected";
@@ -141,6 +131,14 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
 
     }
 
+    public void ChangeStates(bool isCorrectValue, bool isHighlighted, bool isSelected)
+    {
+        this.isCorrectValue = isCorrectValue;
+        this.isHighlighted = isHighlighted;
+        this.isSelected = isSelected;
+        UpdateStateVisuals();
+    }
+
     public void OnClick()
     {
         Debug.Log("Button onClick called");
@@ -151,14 +149,22 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
     public void OnSelect(BaseEventData eventData)
     {
         GameGridController.Instance.AddSelectedCells(this);
-        if (UiSelected != null)
-            UiSelected.SetActive(true);
+        isSelected = true;
+        ChangeStates(isCorrectValue, isHighlighted, true);
     }
 
     public void Deselect()
     {
-        if (UiSelected != null)
-            UiSelected.SetActive(false);
+        ChangeStates(isCorrectValue, isHighlighted, isSelected = false);
+    }
+
+    public void ResetCell()
+    {
+        currentValue = 0;
+        correctValue = 0;
+        isGiven = false;
+        mainText.text = "";
+        ChangeStates(false, false, false);
     }
 
     public void EraseCell()
@@ -166,6 +172,7 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
         if (!isGiven)
         {
             mainText.text = "";
+            ChangeStates(false, isHighlighted, isSelected);
         }
         else
         {
@@ -181,11 +188,12 @@ public class ButtonController_GridNumber : MonoBehaviour, ISelectHandler
     {
         currentValue = newValue;
         UpdateMainText(false);
+        ChangeStates((currentValue == correctValue), isHighlighted, isSelected);
     }
 
     public void UpdateMainText(bool writeGiven)
     {
-        if (!isGiven || writeGiven)
+        if (writeGiven || !isGiven)
         {
             if (currentValue == 0)
                 mainText.text = "";

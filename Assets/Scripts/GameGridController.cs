@@ -50,9 +50,9 @@ public class GameGridController : Singleton<GameGridController>
         //    }
         //}
         //if(allRegions.Values.l)
-            GetRegions();
-        UpdateDisjointSet();
-        UpdateCellWalls();
+        //    GetRegions();
+        //UpdateDisjointSet();
+        //UpdateCellWalls();
     }
 
     public void LoadLevelData(LevelData levelData)
@@ -149,7 +149,7 @@ public class GameGridController : Singleton<GameGridController>
         Debug.Log("allButtons.length: " + allButtons.Length);
         foreach (ButtonController_GridNumber button in allButtons)
         {
-            button.EraseCell();
+            button.ResetCell();
         }
     }
 
@@ -159,6 +159,15 @@ public class GameGridController : Singleton<GameGridController>
         foreach (ButtonController_GridNumber cell in selectedCells)
         {
             cell.UpdateValue(newValue);
+        }
+    }
+
+    public void EraseSelectedCells()
+    {
+        Debug.Log("EraseSelectedCells called");
+        foreach (ButtonController_GridNumber cell in selectedCells)
+        {
+            cell.EraseCell();
         }
     }
 

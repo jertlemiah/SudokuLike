@@ -48,6 +48,9 @@ public class Editor_ButtonController_GridNumber : Editor
             myTarget.UiSelector = (GameObject)EditorGUILayout.ObjectField("Selector ui", myTarget.UiSelector, typeof(GameObject), false);
             myTarget.UiSelected = (GameObject)EditorGUILayout.ObjectField("Selected ui", myTarget.UiSelected, typeof(GameObject), false);
             myTarget.UiPressed = (GameObject)EditorGUILayout.ObjectField("Pressed ui", myTarget.UiPressed, typeof(GameObject), false);
+            myTarget.UiHighlighted = (GameObject)EditorGUILayout.ObjectField("Highlighted ui", myTarget.UiHighlighted, typeof(GameObject), false);
+            myTarget.UiIncorrect = (GameObject)EditorGUILayout.ObjectField("Incorrect Digit ui", myTarget.UiIncorrect, typeof(GameObject), false);
+            //UiHighlighted, UiIncorrect;
         }
         // UiSelector, UiSelected, UiPressed;
         //turnOutlineLeftOn, turnOutlineRightOn, turnOutlineTopOn, turnOutlineBottomOn;

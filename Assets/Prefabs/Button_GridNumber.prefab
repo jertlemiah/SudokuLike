@@ -64,7 +64,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -506,9 +506,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 683fd1a00f070294cae1950dc321506c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentValue: 5
-  correctValue: 5
+  currentValue: 0
+  correctValue: 0
   regionNum: 1
+  currentState: None
+  isCorrectValue: 0
+  isHighlighted: 0
+  isSelected: 0
   turnOutlineLeftOn: 1
   turnOutlineRightOn: 0
   turnOutlineTopOn: 1
@@ -525,10 +529,12 @@ MonoBehaviour:
   idTop: -1
   idBottom: 9
   mainText: {fileID: 2527470135632986622}
-  isGiven: 1
+  isGiven: 0
   UiSelector: {fileID: 0}
   UiSelected: {fileID: 4615333872258372671}
   UiPressed: {fileID: 0}
+  UiHighlighted: {fileID: 956391240535068884}
+  UiIncorrect: {fileID: 8062671632323912487}
 --- !u!1 &3012687229046420785
 GameObject:
   m_ObjectHideFlags: 0
